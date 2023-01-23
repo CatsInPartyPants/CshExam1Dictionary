@@ -33,7 +33,7 @@ namespace CshExam1Dictionary
                 Console.WriteLine($"8. Искать перевод слова.");
                 Console.WriteLine($"9. Искать перевод слова с сохранением в файл.");
                 Console.WriteLine($"0. Выход");
-                
+
                 choise = Int32.Parse(Console.ReadLine());
 
                 switch(choise)
@@ -105,6 +105,9 @@ namespace CshExam1Dictionary
                         Console.WriteLine("Перевод какого слова искать и сохранить результат в файл?");
                         tempWord9 = Console.ReadLine();
                         dict.CreateFileWithResult(tempWord9);
+                        break;
+                    default:
+                        Console.WriteLine("Try again");
                         break;
                 }
             } while (choise != 0);

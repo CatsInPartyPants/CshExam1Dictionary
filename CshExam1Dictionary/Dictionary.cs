@@ -26,16 +26,11 @@ namespace CshExam1Dictionary
     {
         string _dictionaryType;
         Dictionary<string, List<string>> dictionary = new Dictionary<string, List<string>>();
-
+        public DictionaryTranslate() { }
         public DictionaryTranslate(string dictType)
         {
             dictionary = new Dictionary<string, List<string>>();
             _dictionaryType = dictType;
-        }
-
-        public DictionaryTranslate()
-        {
-
         }
         
         public void AddWordAndTranslate(string word, string translate)
