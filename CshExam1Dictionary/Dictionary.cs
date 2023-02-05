@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -183,6 +184,24 @@ namespace CshExam1Dictionary
         public string ShowType()
         {
             return $"{_dictionaryType}";
+        }
+
+        public string TranslatePhrase(string phrase)
+        {
+            string[] words = phrase.Split(' ');
+            string result = "";
+            foreach(string word in words)
+            {
+                if (dictionary.ContainsKey(word))
+                {
+                    result += $"{dictionary[word][0]} ";
+                }
+                else
+                {
+                    result += $"'{word}'(нет в словаре) ";
+                }
+            }
+            return result;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,28 @@ namespace CshExam1Dictionary
             Console.WriteLine("Введите тип словаря: Русско-английский или англо-русский: ");
             string temp = Console.ReadLine();
             dict = new DictionaryTranslate(temp);
+            if(File.Exists("Dictionary.txt"))
+            {
+                using(StreamReader sr = File.OpenText("Dictionary.txt"))
+                {
+                    string tempAll = sr.ReadToEnd();
+                    Console.WriteLine(tempAll);
+                    string[] tempLines = tempAll.Split('\n');
+                    foreach(string line in tempLines)
+                    {
+                        Console.WriteLine(line);
+                        try
+                        {
+                            string[] tempDict = line.Split(':');
+                            string[] tempTranslates = tempDict[1].Split(' ');
+                            foreach (string translate in tempTranslates)
+                            {
+                                dict.AddWordAndTranslate(tempDict[0], translate);
+                            }
+                        }catch(Exception ex) { }
+                    }
+                }
+            }
         }
 
         public void ShowMenu()
@@ -32,6 +55,7 @@ namespace CshExam1Dictionary
                 Console.WriteLine($"7. Удалить перевод из словаря.");
                 Console.WriteLine($"8. Искать перевод слова.");
                 Console.WriteLine($"9. Искать перевод слова с сохранением в файл.");
+                Console.WriteLine($"10. Перевести фразу.");
                 Console.WriteLine($"0. Выход");
 
                 choise = Int32.Parse(Console.ReadLine());
@@ -105,6 +129,15 @@ namespace CshExam1Dictionary
                         Console.WriteLine("Перевод какого слова искать и сохранить результат в файл?");
                         tempWord9 = Console.ReadLine();
                         dict.CreateFileWithResult(tempWord9);
+                        break;
+                    case 10:
+                        string tempPhrase;
+                        string translatedPhrase;
+                        Console.WriteLine("Введите фразу для перевода:");
+                        tempPhrase = Console.ReadLine();
+                        translatedPhrase = dict.TranslatePhrase(tempPhrase);
+                        Console.WriteLine(translatedPhrase);
+                        Console.ReadKey();
                         break;
                     default:
                         Console.WriteLine("Try again");
