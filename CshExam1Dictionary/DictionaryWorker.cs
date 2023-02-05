@@ -24,7 +24,6 @@ namespace CshExam1Dictionary
                     string[] tempLines = tempAll.Split('\n');
                     foreach(string line in tempLines)
                     {
-                        Console.WriteLine(line);
                         try
                         {
                             string[] tempDict = line.Split(':');

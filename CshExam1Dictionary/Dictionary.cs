@@ -152,12 +152,12 @@ namespace CshExam1Dictionary
             {
                 foreach(string word in dictionary.Keys)
                 {
-                    sw.Write($"{word}: ");
+                    sw.Write($"{word}:");
                     foreach(string translate in dictionary[word])
                     {
                         sw.Write($"{translate} ");
                     }
-                    sw.WriteLine();
+                    sw.Write('\n');
                 }
             }
         }
