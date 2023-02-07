@@ -19,7 +19,7 @@ namespace CshExam1Dictionary
 
         void SearchTranslate(string a);
 
-        void SaveToFile();
+        void SaveToFile(string temp);
         void CreateFileWithResult(string w);
     }
 
@@ -146,9 +146,9 @@ namespace CshExam1Dictionary
             }
         }
 
-        public void SaveToFile()
+        public void SaveToFile(string t)
         {
-            using(StreamWriter sw = File.CreateText("Dictionary.txt"))
+            using(StreamWriter sw = File.CreateText($"Dictionary{t}.txt"))
             {
                 foreach(string word in dictionary.Keys)
                 {

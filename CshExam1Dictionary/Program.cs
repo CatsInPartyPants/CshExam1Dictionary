@@ -11,7 +11,6 @@ namespace CshExam1Dictionary
         static void Main(string[] args)
         {
             DictionaryWorker dictWorker = new DictionaryWorker();
-            Console.ReadKey();
             dictWorker.ShowMenu();
         }
     }
